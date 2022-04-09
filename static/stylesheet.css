@@ -4,11 +4,11 @@
   align-items: center;
 }
 
-.code_font {
+.code-font {
     font-family: 'Inconsolata', monospace;
 }
 
-.typed-out{
+.typing-effect{
       overflow: hidden;
       border-right: .15em solid orange;
       white-space: nowrap;
