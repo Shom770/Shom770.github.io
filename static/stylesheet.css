@@ -17,7 +17,7 @@
       font-family: 'Inconsolata', monospace;
       white-space: nowrap;
       animation:
-        typing 1.5s steps(30, end) forwards;
+        typing 1.5s steps(30, end) forwards,
         blink .8s infinite;
       font-size: 1.6rem;
       width: 0;
