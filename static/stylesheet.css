@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+.code_font {
+    font-family: 'Inconsolata', monospace;
+}
+
 @keyframes typing {
   from { width: 0 }
   to { width: 100% }
@@ -17,6 +21,6 @@
 .typing_effect {
     font-family: 'Inconsolata', monospace;
     animation:
-      typing 1s steps(20, end),
+      typing 1s steps(20, end);
       blink .8s infinite;
 }
