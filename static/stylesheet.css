@@ -13,10 +13,12 @@
 
 .typing-effect{
       overflow: hidden;
-      border-right: .15em solid orange;
+      border-right: .15em solid black;
+      font-family: 'Inconsolata', monospace;
       white-space: nowrap;
       animation:
-        typing 1s steps(20, end) forwards;
+        typing 1.5s steps(30, end) forwards;
+        blink .8s infinite;
       font-size: 1.6rem;
       width: 0;
     }
@@ -24,4 +26,9 @@
 @keyframes typing {
   from { width: 0 }
   to { width: 100% }
+}
+
+@keyframes blink {
+  from { border-color: transparent }
+  to { border-color: black; }
 }
