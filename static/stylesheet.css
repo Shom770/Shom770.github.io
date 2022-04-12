@@ -1,29 +1,45 @@
-.centered {
+.box {
   display: flex;
-  justify-content: center;
+  padding: 20px;
   align-items: center;
-  background: #fafafa;
+  border-radius: 10px;
+  background: #e0e0e0;
+  animation: fade-in 0.5s;
+}
+
+.half {
+    width: 50%
+}
+
+@keyframes fade-in {
+    from { width: 0 }
+    to { width: 50% }
+}
+
+.centered {
+    justify-content: center;
 }
 
 .code-font {
     font-family: 'Inconsolata', monospace;
+    white-space: nowrap;
 }
 
 .typing-effect{
       overflow: hidden;
-      border-right: .15em solid black;
+      border-right: .15em solid transparent;
       font-family: 'Inconsolata', monospace;
       white-space: nowrap;
       animation:
-        typing 1.5s steps(30, end) forwards,
+        typing 1s steps(26, end) forwards,
         blink .8s infinite;
       font-size: 1.6rem;
-      width: 0;
-    }
+      width: 0%;
+}
 
 @keyframes typing {
   from { width: 0 }
-  to { width: 100% }
+  to { width: 97% }
 }
 
 @keyframes blink {
