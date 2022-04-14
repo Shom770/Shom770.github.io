@@ -1,19 +1,15 @@
 .box {
   display: flex;
-  padding: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: hidden;
   align-items: center;
-  border-radius: 10px;
-  background: #e0e0e0;
-  animation: fade-in 0.5s;
-}
-
-.half {
-    width: 50%
-}
-
-@keyframes fade-in {
-    from { width: 0 }
-    to { width: 50% }
+  background: #121826;
 }
 
 .centered {
@@ -21,14 +17,16 @@
 }
 
 .code-font {
-    font-family: 'Inconsolata', monospace;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
     white-space: nowrap;
 }
 
 .typing-effect{
       overflow: hidden;
       border-right: .15em solid transparent;
-      font-family: 'Inconsolata', monospace;
+      font-family: 'Inter', monospace;
+      font-weight: 500;
       white-space: nowrap;
       animation:
         typing 1s steps(26, end) forwards,
@@ -39,10 +37,10 @@
 
 @keyframes typing {
   from { width: 0 }
-  to { width: 97% }
+  to { width: 98% }
 }
 
 @keyframes blink {
   from { border-color: transparent }
-  to { border-color: black; }
+  to { border-color: #91BA95; }
 }
