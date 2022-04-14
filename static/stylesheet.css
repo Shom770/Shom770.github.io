@@ -9,9 +9,11 @@
   overflow-x: hidden;
   overflow-y: hidden;
   align-items: center;
-  background: #121826;
+  background: url('dis_code.gif');
+  background-size: 100%;
+  background-repeat: repeat-y;
+  background-attachment: fixed;
 }
-
 .centered {
     justify-content: center;
 }
@@ -33,6 +35,21 @@
         blink .8s infinite;
       font-size: 1.6rem;
       width: 0%;
+}
+
+#background-video {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  object-fit: cover;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
 }
 
 @keyframes typing {
