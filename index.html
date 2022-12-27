@@ -2,7 +2,7 @@
 
 <html lang="en">
     <head>
-        <title>A guide to Python bytecode</title>
+        <title>Analog Finder</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -18,13 +18,45 @@
         </script>
     </head>
     <body>
-        <div class="h-[20vh] bg-gradient-to-r from-blue-700 to-blue-400 flex flex-col justify-center items-center">
-            <h1 class="font-sans font-bold text-[5vh] text-blue-200">
+        <div class="h-[20vh] bg-blue-900 flex flex-col justify-center items-center">
+            <h1 class="font-sans font-bold text-[4vmin] text-blue-200">
                 <a href="https://twitter.com/AtlanticWx" class="underline hover:text-white">@AtlanticWx</a>'s Analog Finder
             </h1>
-            <h2 class="font-sans text-[2vh] text-white">Find the best analogs based on teleconnections, snowfall and more.</h2>
+            <h2 class="font-sans text-[2vmin] text-white">Find the best analogs based on teleconnections, snowfall and more.</h2>
         </div>
-        <div class="h-[80vh] bg-blue-200">
+        <div class="h-[80vh] bg-blue-200 flex flex-col justify-center items-center gap-[10vh]">
+            <div class="flex flex-row gap-[10vw]">
+                <div class="block p-[2vmin] rounded-lg shadow-lg bg-blue-300 md:w-[25vw] lg:w-[15vw]">
+                    <h5 class="text-gray-900 text-xl leading-tight font-bold mb-2">EPO Index</h5>
+                    <p class="text-gray-800 text-base font-medium mb-4">
+                      East Pacific Oscillation Index
+                    </p>
+                    <input type="text" class="form-control block w-full px-[1vw] py-[1vh] text-base font-normal text-gray-700 bg-blue-100 bg-clip-padding rounded focus:outline-none" placeholder="Index Value"/>
+                </div>
+                <div class="block p-[2vmin] rounded-lg shadow-lg bg-blue-300 md:w-[30vw] lg:w-[15vw]">
+                    <h5 class="text-gray-900 text-xl leading-tight font-bold mb-2">PNA Index</h5>
+                    <p class="text-gray-800 text-base font-medium mb-4">
+                      Pacific North-American Index
+                    </p>
+                    <input type="text" class="form-control block w-full px-[1vw] py-[1vh] text-base font-normal text-gray-700 bg-blue-100 bg-clip-padding rounded focus:outline-none" placeholder="Index Value"/>
+                </div>
+            </div>
+            <div class="flex flex-row gap-[10vw]">
+                <div class="block p-[2vmin] rounded-lg shadow-lg bg-blue-300 md:w-[30vw] lg:w-[15vw]">
+                    <h5 class="text-gray-900 text-xl leading-tight font-bold mb-2">NAO Index</h5>
+                    <p class="text-gray-800 text-base font-medium mb-4">
+                      North Atlantic Oscillation Index
+                    </p>
+                    <input type="text" class="form-control block w-full px-[1vw] py-[1vh] text-base font-normal text-gray-700 bg-blue-100 bg-clip-padding rounded focus:outline-none" placeholder="Index Value"/>
+                </div>
+                <div class="block p-[2vmin] rounded-lg shadow-lg bg-blue-300 md:w-[30vw] lg:w-[15vw]">
+                    <h5 class="text-gray-900 text-xl leading-tight font-bold mb-2">AO Index</h5>
+                    <p class="text-gray-800 text-base font-medium mb-4">
+                      Arctic Oscillation Index
+                    </p>
+                    <input type="text" class="form-control block w-full px-[1vw] py-[1vh] text-base font-normal text-gray-700 bg-blue-100 bg-clip-padding rounded focus:outline-none" placeholder="Index Value"/>
+                </div>
+            </div>
         </div>
     </body>
 </html>
