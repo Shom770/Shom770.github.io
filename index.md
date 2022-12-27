@@ -1,3 +1,0 @@
----
-permalink: /analog-finder.html
----
