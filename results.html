@@ -6,9 +6,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css"/>
         <script src="https://cdn.tailwindcss.com"></script>
-        <script defer src="https://pyscript.net/latest/pyscript.js"></script>
         <script>
             tailwind.config = {
               theme: {
@@ -26,7 +24,14 @@
             </h1>
             <h2 class="font-sans text-[2vmin] text-white">Find the best analogs based on teleconnections, snowfall and more.</h2>
         </div>
-        <div class="h-[80vh] bg-blue-200 flex flex-col justify-center items-center gap-[5vh]">
+        <div id="test" class="h-[80vh] bg-blue-200 flex flex-col justify-center items-center gap-[5vh]">
         </div>
+        <script>
+            var analogData = JSON.parse(localStorage.getItem("analogData"));
+            localStorage.removeItem("analogData");
+
+            // Deals with the indices and station code
+            document.getElementById("test").innerHTML = analogData["pnaIndex"] + " " + analogData["stationCode"];
+        </script>
     </body>
 </html>

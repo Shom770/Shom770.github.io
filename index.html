@@ -6,9 +6,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css"/>
         <script src="https://cdn.tailwindcss.com"></script>
-        <script defer src="https://pyscript.net/latest/pyscript.js"></script>
         <script>
             tailwind.config = {
               theme: {
@@ -33,14 +31,14 @@
                     <p class="text-gray-800 text-base font-medium mb-4">
                       East Pacific Oscillation Index
                     </p>
-                    <input type="text" class="form-control block w-full px-[1vw] py-[1vh] text-base font-normal text-gray-700 bg-blue-100 bg-clip-padding rounded border-none focus:outline-none" placeholder="Index Value"/>
+                    <input type="text" id="epoIndex" class="form-control block w-full px-[1vw] py-[1vh] text-base font-normal text-gray-700 bg-blue-100 bg-clip-padding rounded border-none focus:outline-none" placeholder="Index Value"/>
                 </div>
                 <div class="block p-[2vmin] rounded-lg shadow-lg bg-blue-300 w-[60vw] lg:w-[15vw]">
                     <h5 class="text-gray-900 text-xl leading-tight font-bold mb-2">PNA Index</h5>
                     <p class="text-gray-800 text-base font-medium mb-4">
                       Pacific North-American Index
                     </p>
-                    <input type="text" class="form-control block w-full px-[1vw] py-[1vh] text-base font-normal text-gray-700 bg-blue-100 bg-clip-padding rounded border-none focus:outline-none" placeholder="Index Value"/>
+                    <input type="text" id="pnaIndex" class="form-control block w-full px-[1vw] py-[1vh] text-base font-normal text-gray-700 bg-blue-100 bg-clip-padding rounded border-none focus:outline-none" placeholder="Index Value"/>
                 </div>
             </div>
             <div class="flex flex-col lg:flex-row gap-[2.5vh] lg:gap-[10vw]">
@@ -49,14 +47,14 @@
                     <p class="text-gray-800 text-base font-medium mb-4">
                       North Atlantic Oscillation Index
                     </p>
-                    <input type="text" class="form-control block w-full px-[1vw] py-[1vh] text-base font-normal text-gray-700 bg-blue-100 bg-clip-padding rounded border-none focus:outline-none" placeholder="Index Value"/>
+                    <input type="text" id="naoIndex" class="form-control block w-full px-[1vw] py-[1vh] text-base font-normal text-gray-700 bg-blue-100 bg-clip-padding rounded border-none focus:outline-none" placeholder="Index Value"/>
                 </div>
                 <div class="block p-[2vmin] rounded-lg shadow-lg bg-blue-300 w-[60vw] lg:w-[15vw]">
                     <h5 class="text-gray-900 text-xl leading-tight font-bold mb-2">AO Index</h5>
                     <p class="text-gray-800 text-base font-medium mb-4">
                       Arctic Oscillation Index
                     </p>
-                    <input type="text" class="form-control block w-full px-[1vw] py-[1vh] text-base font-normal text-gray-700 bg-blue-100 bg-clip-padding rounded border-none focus:outline-none" placeholder="Index Value"/>
+                    <input type="text" id="aoIndex" class="form-control block w-full px-[1vw] py-[1vh] text-base font-normal text-gray-700 bg-blue-100 bg-clip-padding rounded border-none focus:outline-none" placeholder="Index Value"/>
                 </div>
             </div>
             <div class="block p-[2vmin] rounded-lg shadow-lg bg-blue-300 w-[60vw] lg:w-[40vw]">
@@ -64,9 +62,21 @@
                 <p class="text-gray-800 text-base font-medium mb-4">
                   Station code (e.g KIAD) for retrieving snowfall data for analog months.
                 </p>
-                <input type="text" class="form-control block w-full px-[1vw] py-[1vh] text-base font-normal text-gray-700 bg-blue-100 bg-clip-padding rounded border-none focus:outline-none" placeholder="Index Value"/>
+                <input type="text" id="stationCode" class="form-control block w-full px-[1vw] py-[1vh] text-base font-normal text-gray-700 bg-blue-100 bg-clip-padding rounded border-none focus:outline-none" placeholder="Index Value"/>
             </div>
-            <a href="results.html">
+            <script>
+                function sendData() {
+                    let analogData = {
+                        "epoIndex": document.getElementById("epoIndex").value,
+                        "pnaIndex": document.getElementById("pnaIndex").value,
+                        "naoIndex": document.getElementById("naoIndex").value,
+                        "aoIndex": document.getElementById("aoIndex").value,
+                        "stationCode": document.getElementById("stationCode").value
+                    };
+                    localStorage.setItem("analogData", JSON.stringify(analogData));
+                }
+            </script>
+            <a href="results.html" onclick="sendData()">
                 <button class="p-[2vmin] rounded-lg shadow-lg bg-blue-300 hover:bg-blue-400 w-[60vw] lg:w-[40vw] focus:outline-none">
                     <strong>
                         Retrieve Analogs
