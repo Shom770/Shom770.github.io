@@ -7,6 +7,8 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
         <script src="https://cdn.tailwindcss.com"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
         <script>
             tailwind.config = {
               theme: {
@@ -33,6 +35,12 @@
         </script>
     </head>
     <body>
+        <style>
+            #x-button:hover {
+                color: rgb(148 163 184);
+            }
+        </style>
+
         <div class="h-[20vh] bg-blue-900 flex flex-col justify-center items-center">
             <h1 class="font-sans font-bold text-[4vmin] text-blue-100">
                 <a href="https://twitter.com/AtlanticWx" class="underline hover:text-white">@AtlanticWx</a>'s Analog Finder
@@ -40,13 +48,32 @@
             <h2 class="font-sans text-[2vmin] text-white">Find the best analogs based on teleconnections, snowfall and more.</h2>
         </div>
         <!-- Modal for snowfall -->
-        <div class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
-            <div class="rounded-3xl fixed top-[25vh] left-[25vw] h-[50vh] w-[50vw] flex flex-col bg-blue-800 animate-fade" id="snowfall-modal">
-                <div class="rounded-t-3xl fixed top-[25vh] left-[25vw] h-[10vh] w-[50vw] flex flex-row justify-center items-center bg-blue-900">
+        <div class="fixed inset-0 bg-gray-700 bg-opacity-50 overflow-y-auto h-full w-full">
+            <div class="rounded-3xl fixed top-[25vh] left-[25vw] h-[50vh] w-[50vw] flex flex-col bg-slate-300 animate-fade" id="snowfall-modal">
+                <div class="rounded-t-3xl fixed top-[25vh] left-[25vw] h-[10vh] w-[50vw] flex flex-row justify-center items-center bg-slate-700">
                     <h1 class="font-sans font-bold text-[3vmin] text-white">Snowfall at KIAD</h1>
-                    <button class="bg-blue-900 font-sans font-bold text-white py-2 px-4 rounded inline-flex items-center">
-                        X
-                    </button>
+                </div>
+                <div class=" fixed top-[35vh] left-[25vw] h-[40vh] w-[50vw] flex flex-col gap-[3vh] justify-center items-center">
+                    <div class="gap-[1.5vw] flex flex-row justify-center items-center">
+                        <ion-icon name="snow" style="font-size: 5vmin; color: rgb(51 65 85);"></ion-icon>
+                        <h1 class="text-[2.5vmin] text-slate-700 font-sans">
+                            <strong>22.1"</strong>
+                            of snow in December 2022
+                        </h1>
+                    </div>
+                    <div class="gap-[1.5vw] flex flex-row justify-center items-center">
+                        <ion-icon name="trending-up-outline" style="font-size: 5vmin; color: rgb(51 65 85);"></ion-icon>
+                        <h1 class="text-[2.5vmin] text-slate-700 font-sans">
+                            In the top <strong>5%</strong>
+                            snowiest Decembers at KIAD
+                        </h1>
+                    </div>
+                    <div class="gap-[1.5vw] flex flex-row justify-center items-center">
+                        <ion-icon name="thermometer-outline" style="font-size: 5vmin; color: rgb(51 65 85);"></ion-icon>
+                        <h1 class="text-[2.5vmin] text-slate-700 font-sans">
+                            <strong>2.5</strong> degrees below average at KIAD
+                        </h1>
+                    </div>
                 </div>
             </div>
         </div>
