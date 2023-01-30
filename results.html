@@ -48,12 +48,17 @@
             <h2 class="font-sans text-[2vmin] text-white">Find the best analogs based on teleconnections, snowfall and more.</h2>
         </div>
         <!-- Modal for snowfall -->
-        <div class="fixed inset-0 bg-gray-700 bg-opacity-50 overflow-y-auto h-full w-full">
-            <div class="rounded-3xl fixed top-[25vh] left-[25vw] h-[50vh] w-[50vw] flex flex-col bg-slate-300 animate-fade" id="snowfall-modal">
-                <div class="rounded-t-3xl fixed top-[25vh] left-[25vw] h-[10vh] w-[50vw] flex flex-row justify-center items-center bg-slate-700">
+        <div class="hidden fixed inset-0 bg-gray-700 bg-opacity-50 overflow-y-auto h-full w-full" id="gray-bg">
+            <div class="rounded-3xl hidden fixed top-[25vh] left-[12.5vw] lg:left-[25vw] h-[50vh] w-[75vw] lg:w-[50vw] flex flex-col bg-slate-300 animate-fade" style="-webkit-animation-play-state: paused" id="snowfall-modal">
+                <div class="rounded-t-3xl fixed top-[25vh] left-[12.5vw] lg:left-[25vw] h-[10vh] w-[75vw] lg:w-[50vw] flex flex-row justify-center items-center bg-slate-700">
                     <h1 class="font-sans font-bold text-[3vmin] text-white">Snowfall at KIAD</h1>
+                    <button type="button" class="fixed left-[80vw] lg:left-[70vw] w-7 lg:w-10 h-7 lg:h-10 inline-block bg-red-300 leading-tight uppercase rounded-full shadow-md hover:bg-red-200 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-400 active:shadow-lg">
+                        <h1 class="rotate-45 text-slate-700 text-[3vmin] font-bold">
+                            +
+                        </h1>
+                    </button>
                 </div>
-                <div class=" fixed top-[35vh] left-[25vw] h-[40vh] w-[50vw] flex flex-col gap-[3vh] justify-center items-center">
+                <div class=" fixed top-[35vh] left-[12.5vw] lg:left-[25vw] h-[40vh] w-[75vw] lg:w-[50vw] flex flex-col gap-[3vh] justify-center items-center">
                     <div class="gap-[1.5vw] flex flex-row justify-center items-center">
                         <ion-icon name="snow" style="font-size: 5vmin; color: rgb(51 65 85);"></ion-icon>
                         <h1 class="text-[2.5vmin] text-slate-700 font-sans">
@@ -121,7 +126,7 @@
                 </div>
                 <div class="w-[30vw] lg:w-[20vw] gap-[2vmin] flex flex-row">
                     <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4">
-                        <h1 class="font-sans font-bold text-[2vmin] text-blue-100">
+                        <h1 class="font-sans font-bold text-[2vmin] text-blue-100" onclick="showSnowfallModal()">
                             Snowfall
                         </h1>
                     </button>
@@ -144,7 +149,7 @@
                 </div>
                 <div class="w-[30vw] lg:w-[20vw] gap-[2vmin] flex flex-row">
                     <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4">
-                        <h1 class="font-sans font-bold text-[2vmin] text-blue-100">
+                        <h1 class="font-sans font-bold text-[2vmin] text-blue-100" onclick="showSnowfallModal()">
                             Snowfall
                         </h1>
                     </button>
@@ -167,7 +172,7 @@
                 </div>
                 <div class="w-[30vw] lg:w-[20vw] gap-[2vmin] flex flex-row">
                     <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4">
-                        <h1 class="font-sans font-bold text-[2vmin] text-blue-100">
+                        <h1 class="font-sans font-bold text-[2vmin] text-blue-100" onclick="showSnowfallModal()">
                             Snowfall
                         </h1>
                     </button>
@@ -190,7 +195,7 @@
                 </div>
                 <div class="w-[30vw] lg:w-[20vw] gap-[2vmin] flex flex-row">
                     <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4">
-                        <h1 class="font-sans font-bold text-[2vmin] text-blue-100">
+                        <h1 class="font-sans font-bold text-[2vmin] text-blue-100" onclick="showSnowfallModal()">
                             Snowfall
                         </h1>
                     </button>
@@ -207,8 +212,13 @@
             localStorage.removeItem("analogData");
             
             function showSnowfallModal() {
-                let snowfallModal = document.getElementById("snowfall-modal")
+                // Display gray background
+                let fadedBackground = document.getElementById("gray-bg");
+                fadedBackground.style.display = "block";
+                // Display modal
+                let snowfallModal = document.getElementById("snowfall-modal");
                 snowfallModal.style.display = "block";
+                snowfallModal.style.webkitAnimationPlayState = "running";
             }
         </script>
     </body>
