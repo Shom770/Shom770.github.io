@@ -56,7 +56,7 @@
             </h1>
             <h2 class="font-sans text-[2vmin] text-white">Find the best analogs based on teleconnections, snowfall and more.</h2>
         </div>
-        <!-- Modal for snowfall -->
+        <!-- Modal for snowfall
         <div class="hidden fixed inset-0 bg-gray-700 bg-opacity-50 overflow-y-auto h-full w-full animate-fadeout" style="-webkit-animation-play-state: paused" id="gray-bg">
             <div class="rounded-3xl hidden fixed top-[25vh] left-[12.5vw] lg:left-[25vw] h-[50vh] w-[75vw] lg:w-[50vw] flex flex-col bg-slate-300 animate-fadein" style="-webkit-animation-play-state: paused" id="snowfall-modal">
                 <div class="rounded-t-3xl fixed top-[25vh] left-[12.5vw] lg:left-[25vw] h-[10vh] w-[75vw] lg:w-[50vw] flex flex-row justify-center items-center bg-slate-700">
@@ -88,6 +88,33 @@
                             <strong>2.5</strong> degrees below average at KIAD
                         </h1>
                     </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- Modal for indices -->
+        <div class="fixed inset-0 bg-gray-700 bg-opacity-50 overflow-y-auto h-full w-full">
+            <div class="rounded-3xl fixed top-[25vh] left-[12.5vw] lg:left-[25vw] h-[50vh] w-[75vw] lg:w-[50vw] flex flex-col bg-slate-300">
+                <div class="rounded-t-3xl fixed top-[25vh] left-[12.5vw] lg:left-[25vw] h-[10vh] w-[75vw] lg:w-[50vw] flex flex-row justify-center items-center bg-slate-700">
+                    <h1 class="font-sans font-bold text-[3vmin] text-white">Indices in December 2022</h1>
+                    <button type="button" onclick="closeSnowfallModal()" class="fixed left-[80vw] lg:left-[70vw] w-7 lg:w-10 h-7 lg:h-10 inline-block bg-red-300 leading-tight uppercase rounded-full shadow-md hover:bg-red-200 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-400 active:shadow-lg">
+                        <h1 class="rotate-45 text-slate-700 text-[3vmin] font-bold">
+                            +
+                        </h1>
+                    </button>
+                </div>
+                <div class=" fixed top-[35vh] left-[12.5vw] lg:left-[25vw] h-[40vh] w-[75vw] lg:w-[50vw] flex flex-col gap-[3vh] justify-center items-center">
+                    <h1 class="text-[2.5vmin] text-slate-700 font-sans">
+                        The EPO Index was at an average of a sigma of <strong>2.5σ</strong>.
+                    </h1>
+                    <h1 class="text-[2.5vmin] text-slate-700 font-sans">
+                        The EPO Index was at an average of <strong>-2.2σ</strong>.
+                    </h1>
+                    <h1 class="text-[2.5vmin] text-slate-700 font-sans">
+                        The NAO Index was at an average of <strong>-2σ</strong>.
+                    </h1>
+                    <h1 class="text-[2.5vmin] text-slate-700 font-sans">
+                        The AO Index was at an average of <strong>-1.9σ</strong>.
+                    </h1>
                 </div>
             </div>
         </div>
