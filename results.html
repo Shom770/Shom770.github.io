@@ -96,7 +96,7 @@
             <div class="rounded-3xl hidden fixed top-[25vh] left-[12.5vw] lg:left-[25vw] h-[50vh] w-[75vw] lg:w-[50vw] flex flex-col bg-slate-300 animate-fadein" style="-webkit-animation-play-state: paused" id="indices-modal">
                 <div class="rounded-t-3xl fixed top-[25vh] left-[12.5vw] lg:left-[25vw] h-[10vh] w-[75vw] lg:w-[50vw] flex flex-row justify-center items-center bg-slate-700">
                     <h1 class="font-sans font-bold text-[3vmin] text-white">Indices in December 2022</h1>
-                    <button type="button" onclick="closeSnowfallModal()" class="fixed left-[80vw] lg:left-[70vw] w-7 lg:w-10 h-7 lg:h-10 inline-block bg-red-300 leading-tight uppercase rounded-full shadow-md hover:bg-red-200 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-400 active:shadow-lg">
+                    <button type="button" onclick="closeIndicesModal()" class="fixed left-[80vw] lg:left-[70vw] w-7 lg:w-10 h-7 lg:h-10 inline-block bg-red-300 leading-tight uppercase rounded-full shadow-md hover:bg-red-200 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-400 active:shadow-lg">
                         <h1 class="rotate-45 text-slate-700 text-[3vmin] font-bold">
                             +
                         </h1>
@@ -144,7 +144,7 @@
                         </h1>
                     </button>
                     <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4">
-                        <h1 class="font-sans font-bold text-[2vmin] text-blue-100">
+                        <h1 class="font-sans font-bold text-[2vmin] text-blue-100" onclick="showIndicesModal()">
                             Indices
                         </h1>
                     </button>
@@ -271,6 +271,32 @@
                 fadedBackground.style.display = "none";
                 // Close modal
                 snowfallModal.style.display = "none";
+            }
+
+            function showIndicesModal() {
+                let fadedBackground = document.getElementById("gray-bg");
+                let indicesModal = document.getElementById("indices-modal");
+                // Pause old animations
+                fadedBackground.style.webkitAnimationPlayState = "paused";
+                indicesModal.style.webkitAnimationPlayState = "paused";
+                // Display gray background
+                indicesModal.style.webkitAnimationPlayState = "running";
+                fadedBackground.style.display = "block";
+                // Show modal
+                indicesModal.style.display = "block";
+            }
+
+            function closeIndicesModal() {
+                let fadedBackground = document.getElementById("gray-bg");
+                let indicesModal = document.getElementById("indices-modal");
+                // Pause old animations
+                fadedBackground.style.webkitAnimationPlayState = "paused";
+                indicesModal.style.webkitAnimationPlayState = "paused";
+                // Close gray background
+                fadedBackground.style.webkitAnimationPlayState = "running";
+                fadedBackground.style.display = "none";
+                // Close modal
+                indicesModal.style.display = "none";
             }
         </script>
     </body>
