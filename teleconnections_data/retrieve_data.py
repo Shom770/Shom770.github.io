@@ -1,8 +1,10 @@
+from collections import defaultdict
 from enum import Enum
 from itertools import groupby
 from json import dump
-from operator import itemgetter
+from statistics import mean, stdev
 
+from dateutil.utils import today
 from requests import get
 
 
@@ -14,19 +16,52 @@ class TeleconnectionType(Enum):
     PNA = "pna_values.json"
 
 
+# Contains the links to retrieve data from for each respective teleconnection
+LINKS = {
+    TeleconnectionType.NAO: "https://www.cpc.ncep.noaa.gov/products/precip/CWlink/pna/norm.nao.monthly.b5001.current.ascii",
+    TeleconnectionType.AO: "https://www.cpc.ncep.noaa.gov/products/precip/CWlink/daily_ao_index/monthly.ao.index.b50.current.ascii",
+    TeleconnectionType.PNA: "https://www.cpc.ncep.noaa.gov/products/precip/CWlink/pna/norm.pna.monthly.b5001.current.ascii",
+    TeleconnectionType.EPO: "https://downloads.psl.noaa.gov/Public/map/teleconnections/epo.reanalysis.t10trunc.1948-present.txt"
+}
+# Contains the upper and lower bounds of the time period
+bounds = (1950, today().year if today().month > 6 else today().year - 1)
+
+
 def retrieve_teleconnections_data(teleconnection: TeleconnectionType) -> dict[str, list[float]]:
-    if teleconnection == TeleconnectionType.AO:
-        ao_values = [line.split() for line in get(
-            "https://www.cpc.ncep.noaa.gov/products/precip/CWlink/daily_ao_index/monthly.ao.index.b50.current.ascii"
-        ).text.strip().split("\n")]
-        grouped_by_year = groupby(ao_values, itemgetter(0))
+    link = LINKS[teleconnection]
+
+    if teleconnection == TeleconnectionType.EPO:
+        epo_values = [line.split() for line in get(link).text.strip().split("\n")]
+
+        # Convert raw height anomalies to the z-score (in sigma)
+        height_dataset = [float(daily_info[-1]) for daily_info in epo_values]
+        mean_of_dataset = mean(height_dataset)
+        std_of_dataset = stdev(height_dataset)
+
+        epo_values: list[list[str | float]] = [
+            daily_info[:-1] + [(float(daily_info[-1]) - mean_of_dataset) / std_of_dataset]
+            for daily_info in epo_values]
+
+        # Retrieve averaged out monthly values
+        grouped_by_year_and_month = groupby(epo_values, lambda timeseries: timeseries[:2])
+        raw_monthly_values = defaultdict(list)
+
+        for (year, _), daily_values in grouped_by_year_and_month:
+            if bounds[0] <= int(year) <= bounds[1]:
+                raw_monthly_values[year].append(mean(float(daily_info[-1]) for daily_info in daily_values))
+
+        return raw_monthly_values
+    else:
+        teleconnections_values = [line.split() for line in get(link).text.strip().split("\n")]
+        grouped_by_year = groupby(teleconnections_values, lambda timeseries: timeseries[0])
 
         return {
             year: [float(monthly_values[-1]) for monthly_values in group]
             for year, group in grouped_by_year
+            if bounds[0] <= int(year) <= bounds[1]
         }
 
 
 if __name__ == '__main__':
-    with open(TeleconnectionType.AO.value, "w") as file:
-        dump(retrieve_teleconnections_data(TeleconnectionType.AO), file, indent=2)
+    with open(TeleconnectionType.PNA.value, "w") as file:
+        dump(retrieve_teleconnections_data(TeleconnectionType.PNA), file, indent=2)
