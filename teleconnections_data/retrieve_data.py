@@ -10,10 +10,10 @@ from requests import get
 
 # Contains name of the teleconnection and the corresponding file to write to
 class TeleconnectionTypes(Enum):
-    NAO = "teleconnections_data/nao_values.json"
-    AO = "teleconnections_data/ao_values.json"
-    EPO = "teleconnections_data/epo_values.json"
-    PNA = "teleconnections_data/pna_values.json"
+    NAO = "nao_values.json"
+    AO = "ao_values.json"
+    EPO = "epo_values.json"
+    PNA = "pna_values.json"
 
 
 # Contains the links to retrieve data from for each respective teleconnection
