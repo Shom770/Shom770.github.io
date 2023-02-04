@@ -9,7 +9,7 @@ from requests import get
 
 
 # Contains name of the teleconnection and the corresponding file to write to
-class TeleconnectionType(Enum):
+class TeleconnectionTypes(Enum):
     NAO = "nao_values.json"
     AO = "ao_values.json"
     EPO = "epo_values.json"
@@ -18,19 +18,19 @@ class TeleconnectionType(Enum):
 
 # Contains the links to retrieve data from for each respective teleconnection
 LINKS = {
-    TeleconnectionType.NAO: "https://www.cpc.ncep.noaa.gov/products/precip/CWlink/pna/norm.nao.monthly.b5001.current.ascii",
-    TeleconnectionType.AO: "https://www.cpc.ncep.noaa.gov/products/precip/CWlink/daily_ao_index/monthly.ao.index.b50.current.ascii",
-    TeleconnectionType.PNA: "https://www.cpc.ncep.noaa.gov/products/precip/CWlink/pna/norm.pna.monthly.b5001.current.ascii",
-    TeleconnectionType.EPO: "https://downloads.psl.noaa.gov/Public/map/teleconnections/epo.reanalysis.t10trunc.1948-present.txt"
+    TeleconnectionTypes.NAO: "https://www.cpc.ncep.noaa.gov/products/precip/CWlink/pna/norm.nao.monthly.b5001.current.ascii",
+    TeleconnectionTypes.AO: "https://www.cpc.ncep.noaa.gov/products/precip/CWlink/daily_ao_index/monthly.ao.index.b50.current.ascii",
+    TeleconnectionTypes.PNA: "https://www.cpc.ncep.noaa.gov/products/precip/CWlink/pna/norm.pna.monthly.b5001.current.ascii",
+    TeleconnectionTypes.EPO: "https://downloads.psl.noaa.gov/Public/map/teleconnections/epo.reanalysis.t10trunc.1948-present.txt"
 }
 # Contains the upper and lower bounds of the time period
 bounds = (1950, today().year if today().month > 6 else today().year - 1)
 
 
-def retrieve_teleconnections_data(teleconnection: TeleconnectionType) -> dict[str, list[float]]:
+def retrieve_teleconnections_data(teleconnection: TeleconnectionTypes) -> dict[str, list[float]]:
     link = LINKS[teleconnection]
 
-    if teleconnection == TeleconnectionType.EPO:
+    if teleconnection == TeleconnectionTypes.EPO:
         epo_values = [line.split() for line in get(link).text.strip().split("\n")]
 
         # Convert raw height anomalies to the z-score (in sigma)
@@ -63,5 +63,6 @@ def retrieve_teleconnections_data(teleconnection: TeleconnectionType) -> dict[st
 
 
 if __name__ == '__main__':
-    with open(TeleconnectionType.PNA.value, "w") as file:
-        dump(retrieve_teleconnections_data(TeleconnectionType.PNA), file, indent=2)
+    for teleconnection in TeleconnectionTypes:
+        with open(teleconnection.value, "w") as file:
+            dump(retrieve_teleconnections_data(teleconnection), file, indent=2)
