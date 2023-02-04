@@ -63,7 +63,7 @@ def retrieve_teleconnections_data(teleconnection: TeleconnectionTypes) -> dict[s
         }
 
 
-if __name__ == '__main__':
-    for teleconnection in TeleconnectionTypes:
-        with open(teleconnection.value, "w") as file:
-            dump(retrieve_teleconnections_data(teleconnection), file, indent=2)
+# Write the updated teleconnection values to their corresponding files
+for teleconnection in TeleconnectionTypes:
+    with open(teleconnection.value, "w") as file:
+        dump(retrieve_teleconnections_data(teleconnection), file, indent=2)
