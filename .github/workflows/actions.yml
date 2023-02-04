@@ -24,4 +24,5 @@ jobs:
           pip install requests
 
       - name: Retrieve data with the Python script
-        run: python teleconnections_data/retrieve_data.py
+        working-directory: teleconnections_data
+        run: python retrieve_data.py
