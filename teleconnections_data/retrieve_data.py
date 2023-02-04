@@ -1,19 +1,19 @@
 from collections import defaultdict
+from datetime import datetime
 from enum import Enum
 from itertools import groupby
 from json import dump
 from statistics import mean, stdev
 
-from dateutil.utils import today
 from requests import get
 
 
 # Contains name of the teleconnection and the corresponding file to write to
 class TeleconnectionTypes(Enum):
-    NAO = "nao_values.json"
-    AO = "ao_values.json"
-    EPO = "epo_values.json"
-    PNA = "pna_values.json"
+    NAO = "teleconnections_data/nao_values.json"
+    AO = "teleconnections_data/ao_values.json"
+    EPO = "teleconnections_data/epo_values.json"
+    PNA = "teleconnections_data/pna_values.json"
 
 
 # Contains the links to retrieve data from for each respective teleconnection
@@ -24,7 +24,8 @@ LINKS = {
     TeleconnectionTypes.EPO: "https://downloads.psl.noaa.gov/Public/map/teleconnections/epo.reanalysis.t10trunc.1948-present.txt"
 }
 # Contains the upper and lower bounds of the time period
-bounds = (1950, today().year if today().month > 6 else today().year - 1)
+_current_date = datetime.today()
+bounds = (1950, _current_date.year if _current_date.month > 6 else _current_date.year - 1)
 
 
 def retrieve_teleconnections_data(teleconnection: TeleconnectionTypes) -> dict[str, list[float]]:
