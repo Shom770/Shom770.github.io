@@ -57,9 +57,9 @@
             <h2 class="font-sans text-[2vmin] text-white">Find the best analogs based on teleconnections, snowfall and more.</h2>
         </div>
         
-        <div class="hidden fixed inset-0 bg-gray-700 bg-opacity-50 overflow-y-auto h-full w-full animate-fadeout" style="-webkit-animation-play-state: paused" id="gray-bg">
+        <div class="hidden fixed inset-0 bg-gray-700 bg-opacity-50 overflow-y-auto h-full w-full animate-fadeout" style="animation-play-state: paused" id="gray-bg">
             <!-- Modal for snowfall -->
-            <div class="rounded-3xl shadow-lg hidden fixed top-[25vh] left-[12.5vw] lg:left-[25vw] h-[50vh] w-[75vw] lg:w-[50vw] flex flex-col bg-slate-300 animate-fadein" style="-webkit-animation-play-state: paused" id="snowfall-modal">
+            <div class="rounded-3xl shadow-lg hidden fixed top-[25vh] left-[12.5vw] lg:left-[25vw] h-[50vh] w-[75vw] lg:w-[50vw] flex flex-col bg-slate-300 animate-fadein" style="animation-play-state: paused" id="snowfall-modal">
                 <div class="rounded-t-3xl fixed top-[25vh] left-[12.5vw] lg:left-[25vw] h-[10vh] w-[75vw] lg:w-[50vw] flex flex-row justify-center items-center bg-slate-700">
                     <h1 class="font-sans font-bold text-[3vmin] text-white">Snowfall at KIAD</h1>
                     <button type="button" onclick="closeSnowfallModal()" class="fixed left-[80vw] lg:left-[70vw] w-7 lg:w-10 h-7 lg:h-10 inline-block bg-red-300 leading-tight uppercase rounded-full shadow-md hover:bg-red-200 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-400 active:shadow-lg">
@@ -93,7 +93,7 @@
             </div>
             
             <!-- Modal for indices -->
-            <div class="rounded-3xl shadow-lg hidden fixed top-[25vh] left-[12.5vw] lg:left-[25vw] h-[50vh] w-[75vw] lg:w-[50vw] flex flex-col bg-slate-300 animate-fadein" style="-webkit-animation-play-state: paused" id="indices-modal">
+            <div class="rounded-3xl shadow-lg hidden fixed top-[25vh] left-[12.5vw] lg:left-[25vw] h-[50vh] w-[75vw] lg:w-[50vw] flex flex-col bg-slate-300 animate-fadein" style="animation-play-state: paused" id="indices-modal">
                 <div class="rounded-t-3xl fixed top-[25vh] left-[12.5vw] lg:left-[25vw] h-[10vh] w-[75vw] lg:w-[50vw] flex flex-row justify-center items-center bg-slate-700">
                     <h1 class="font-sans font-bold text-[3vmin] text-white">Indices in December 2022</h1>
                     <button type="button" onclick="closeIndicesModal()" class="fixed left-[80vw] lg:left-[70vw] w-7 lg:w-10 h-7 lg:h-10 inline-block bg-red-300 leading-tight uppercase rounded-full shadow-md hover:bg-red-200 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-400 active:shadow-lg">
@@ -243,61 +243,7 @@
                 </div>
             </div>
         </div>
-        <script>
-            var analogData = JSON.parse(localStorage.getItem("analogData"));
-            localStorage.removeItem("analogData");
-            
-            function showSnowfallModal() {
-                let fadedBackground = document.getElementById("gray-bg");
-                let snowfallModal = document.getElementById("snowfall-modal");
-                // Pause old animations
-                fadedBackground.style.webkitAnimationPlayState = "paused";
-                snowfallModal.style.webkitAnimationPlayState = "paused";
-                // Display gray background
-                snowfallModal.style.webkitAnimationPlayState = "running";
-                fadedBackground.style.display = "block";
-                // Show modal
-                snowfallModal.style.display = "block";
-            }
-
-            function closeSnowfallModal() {
-                let fadedBackground = document.getElementById("gray-bg");
-                let snowfallModal = document.getElementById("snowfall-modal");
-                // Pause old animations
-                fadedBackground.style.webkitAnimationPlayState = "paused";
-                snowfallModal.style.webkitAnimationPlayState = "paused";
-                // Close gray background
-                fadedBackground.style.webkitAnimationPlayState = "running";
-                fadedBackground.style.display = "none";
-                // Close modal
-                snowfallModal.style.display = "none";
-            }
-
-            function showIndicesModal() {
-                let fadedBackground = document.getElementById("gray-bg");
-                let indicesModal = document.getElementById("indices-modal");
-                // Pause old animations
-                fadedBackground.style.webkitAnimationPlayState = "paused";
-                indicesModal.style.webkitAnimationPlayState = "paused";
-                // Display gray background
-                indicesModal.style.webkitAnimationPlayState = "running";
-                fadedBackground.style.display = "block";
-                // Show modal
-                indicesModal.style.display = "block";
-            }
-
-            function closeIndicesModal() {
-                let fadedBackground = document.getElementById("gray-bg");
-                let indicesModal = document.getElementById("indices-modal");
-                // Pause old animations
-                fadedBackground.style.webkitAnimationPlayState = "paused";
-                indicesModal.style.webkitAnimationPlayState = "paused";
-                // Close gray background
-                fadedBackground.style.webkitAnimationPlayState = "running";
-                fadedBackground.style.display = "none";
-                // Close modal
-                indicesModal.style.display = "none";
-            }
+        <script type="module" src="index.js">
         </script>
     </body>
 </html>
