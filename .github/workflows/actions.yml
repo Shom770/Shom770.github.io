@@ -25,4 +25,12 @@ jobs:
 
       - name: Retrieve data with the Python script
         working-directory: teleconnections_data
-        run: python retrieve_data.py
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull
+          chmod +x retrieve_data.py
+          python retrieve_data.py
+          git add -A
+          git commit -m --no-verify "Latest teleconnection data"
+          git push
