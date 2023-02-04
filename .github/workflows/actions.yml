@@ -32,5 +32,5 @@ jobs:
           chmod +x retrieve_data.py
           python retrieve_data.py
           git add -A
-          git commit -m --no-verify "Latest teleconnection data"
+          git commit -m "Latest teleconnection data"
           git push
