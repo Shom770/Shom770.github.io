@@ -17,11 +17,30 @@ const pnaIndex = null ? analogData["pnaIndex"] === "" : parseFloat(analogData["p
 const stationCode = null ? analogData["stationCode"] === "" : analogData["stationCode"];
 var analogs = [];
 
+// Listing the names of all the indices that are used
+var indicesNames = [];
+
+if (!isNaN(naoIndex)) {
+    indicesNames.push("nao");
+}
+
+if (!isNaN(aoIndex)) {
+    indicesNames.push("ao");
+}
+
+if (!isNaN(epoIndex)) {
+    indicesNames.push("epo");
+}
+
+if (!isNaN(pnaIndex)) {
+    indicesNames.push("pna");
+}
+
 localStorage.removeItem("analogData");
 
 // Define different behaviors of opening and closing buttons
 
-function showSnowfallModal() {
+function showSnowfallModal(analogNumber) {
     let fadedBackground = document.getElementById("gray-bg");
     let snowfallModal = document.getElementById("snowfall-modal");
     // Pause old animations
@@ -47,7 +66,7 @@ function closeSnowfallModal() {
     snowfallModal.style.display = "none";
 }
 
-function showIndicesModal() {
+function showIndicesModal(analogNumber) {
     let fadedBackground = document.getElementById("gray-bg");
     let indicesModal = document.getElementById("indices-modal");
     // Pause old animations
@@ -58,6 +77,27 @@ function showIndicesModal() {
     fadedBackground.style.display = "block";
     // Show modal
     indicesModal.style.display = "block";
+
+    // Change values within the indices modal
+    let currentAnalog = bestAnalogs[analogNumber - 1];
+    let actualIndices = currentAnalog[3];
+
+    document.getElementById("indices-header").innerText = `Indices in ${months[currentAnalog[1]]} ${currentAnalog[0]}`;
+
+    for (let idx = 0; idx < indicesNames.length; idx++) {
+        let currentIndex = indicesNames[idx];
+        let indexDifference = Math.abs(parseFloat(analogData[`${currentIndex}Index`]) - actualIndices[idx]);
+
+        document.getElementById(`${currentIndex}Value`).innerText = (Math.round(actualIndices[idx] * 100) / 100).toFixed(2);
+        document.getElementById(`${currentIndex}Difference`).innerText = `Δ${(Math.round(indexDifference * 100) / 100).toFixed(2)}σ`
+
+        if (indexDifference > 0) {
+            document.getElementById(`${currentIndex}Difference`).classList.add("text-emerald-700")
+        }
+        else if (indexDifference < 0) {
+            document.getElementById(`${currentIndex}Difference`).classList.add("text-red-700")
+        }
+    }
 }
 
 function closeIndicesModal() {
@@ -160,6 +200,10 @@ for (let idx = 0; idx < 5; idx++) {
     }
 
     // Dynamically define the behavior of when you click the buttons
-    snowfallButton.addEventListener("click", showSnowfallModal);
-    indicesButton.addEventListener("click", showIndicesModal);
+    snowfallButton.addEventListener("click", () => {
+        showSnowfallModal(idx + 1)
+    });
+    indicesButton.addEventListener("click", () => {
+        showIndicesModal(idx + 1)
+    });
 }
