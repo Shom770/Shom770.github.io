@@ -84,16 +84,16 @@ for (let idx = 0; idx < 5; idx++) {
     matchId.innerText = `${(Math.round(matchPercentage * 10) / 10).toFixed(1)}% Match`
 
     // Set color of text displaying match based on the match %
-    if (matchPercentage >= 75) {
+    if (matchPercentage >= 95) {
         matchId.classList.add("text-emerald-300");
     }
-    else if (50 <= matchPercentage < 75) {
+    else if (90 <= matchPercentage < 95) {
         matchId.classList.add("text-yellow-300");
     }
-    else if (25 <= matchPercentage < 50) {
+    else if (85 <= matchPercentage < 90) {
         matchId.classList.add("text-orange-300");
     }
-    else if (matchPercentage < 25) {
+    else if (matchPercentage < 85) {
         matchId.classList.add("text-red-300");
     }
 }
