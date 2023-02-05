@@ -19,84 +19,7 @@ var analogs = [];
 
 localStorage.removeItem("analogData");
 
-// Calculate all analogs
-for (let startingYear = 1950; startingYear < 1950 + Object.keys(naoJson).length; startingYear++) {
-    for (let month = 1; month <= 12; month++) {
-        if (4 < month && month < 11) {
-            continue
-        }
-        
-        let desiredIndices = [];
-        let actualIndices = [];
-
-        if (naoIndex !== null) {
-            desiredIndices.push(naoIndex);
-            actualIndices.push(naoJson[startingYear.toString()][month - 1]);
-        }
-
-        if (aoIndex !== null) {
-            desiredIndices.push(aoIndex);
-            actualIndices.push(aoJson[startingYear.toString()][month - 1]);
-        }
-
-        if (epoIndex !== null) {
-            desiredIndices.push(epoIndex);
-            actualIndices.push(epoJson[startingYear.toString()][month - 1]);
-        }
-
-        if (pnaIndex !== null) {
-            desiredIndices.push(pnaIndex);
-            actualIndices.push(pnaJson[startingYear.toString()][month - 1]);
-        }
-        
-        // Using cosine similarity to determine the % of the match between the desired and actual indices.
-        let sumOfBothArraysMultiplied = desiredIndices.map(
-            (enteredIndex, position) => enteredIndex * actualIndices[position]
-        ).reduce((a, b) => a + b, 0);
-
-        let sumOfDesiredIndicesSquared = desiredIndices.map(
-            (enteredIndex) => enteredIndex ** 2
-        ).reduce((a, b) => a + b, 0);
-
-        let sumOfActualIndicesSquared = actualIndices.map(
-            (enteredIndex) => enteredIndex ** 2
-        ).reduce((a, b) => a + b, 0);
-
-        let matchPercentage = sumOfBothArraysMultiplied / (sumOfDesiredIndicesSquared ** 0.5 * sumOfActualIndicesSquared ** 0.5) * 100;
-
-        analogs.push([startingYear, month, matchPercentage, actualIndices]);
-    }
-}
-
-const analogsSorted = analogs.sort(
-    (a1, a2) => a2[2] - a1[2]
-);
-const bestAnalogs = analogsSorted.slice(0, 5);
-
-// Display best analogs on screen
-for (let idx = 0; idx < 5; idx++) {
-    let currentAnalog = bestAnalogs[idx];
-    let dateId = document.getElementById(`date-analog-${idx + 1}`);
-    let matchId = document.getElementById(`match-analog-${idx + 1}`);
-    let matchPercentage = currentAnalog[2];
-
-    dateId.innerText = `${months[currentAnalog[1] - 1]} ${currentAnalog[0]}`;
-    matchId.innerText = `${(Math.round(matchPercentage * 10) / 10).toFixed(1)}% Match`
-
-    // Set color of text displaying match based on the match %
-    if (matchPercentage >= 95) {
-        matchId.classList.add("text-emerald-300");
-    }
-    else if (90 <= matchPercentage < 95) {
-        matchId.classList.add("text-yellow-300");
-    }
-    else if (85 <= matchPercentage < 90) {
-        matchId.classList.add("text-orange-300");
-    }
-    else if (matchPercentage < 85) {
-        matchId.classList.add("text-red-300");
-    }
-}
+// Define different behaviors of opening and closing buttons
 
 function showSnowfallModal() {
     let fadedBackground = document.getElementById("gray-bg");
@@ -148,4 +71,95 @@ function closeIndicesModal() {
     fadedBackground.style.display = "none";
     // Close modal
     indicesModal.style.display = "none";
+}
+
+// Calculate all analogs
+for (let startingYear = 1950; startingYear < 1950 + Object.keys(naoJson).length; startingYear++) {
+    for (let month = 1; month <= 12; month++) {
+        if (4 < month && month < 11) {
+            continue
+        }
+        
+        let desiredIndices = [];
+        let actualIndices = [];
+
+        if (!isNaN(naoIndex)) {
+            desiredIndices.push(naoIndex);
+            actualIndices.push(naoJson[startingYear.toString()][month - 1]);
+        }
+
+        if (!isNaN(aoIndex)) {
+            desiredIndices.push(aoIndex);
+            actualIndices.push(aoJson[startingYear.toString()][month - 1]);
+        }
+
+        if (!isNaN(epoIndex)) {
+            desiredIndices.push(epoIndex);
+            actualIndices.push(epoJson[startingYear.toString()][month - 1]);
+        }
+
+        if (!isNaN(pnaIndex)) {
+            desiredIndices.push(pnaIndex);
+            actualIndices.push(pnaJson[startingYear.toString()][month - 1]);
+        }
+        
+        // Using cosine similarity to determine the % of the match between the desired and actual indices.
+        let sumOfBothArraysMultiplied = desiredIndices.map(
+            (enteredIndex, position) => enteredIndex * actualIndices[position]
+        ).reduce((a, b) => a + b, 0);
+
+        let sumOfDesiredIndicesSquared = desiredIndices.map(
+            (enteredIndex) => enteredIndex ** 2
+        ).reduce((a, b) => a + b, 0);
+
+        let sumOfActualIndicesSquared = actualIndices.map(
+            (enteredIndex) => enteredIndex ** 2
+        ).reduce((a, b) => a + b, 0);
+
+        let matchPercentage = sumOfBothArraysMultiplied / (sumOfDesiredIndicesSquared ** 0.5 * sumOfActualIndicesSquared ** 0.5) * 100;
+
+        analogs.push([startingYear, month, matchPercentage, actualIndices]);
+    }
+}
+
+const analogsSorted = analogs.sort(
+    (a1, a2) => a2[2] - a1[2]
+);
+const bestAnalogs = analogsSorted.slice(0, 5);
+
+// Define behaviors for pressing the x buttons on the modals
+document.getElementById("snowfall-x-button").addEventListener("click", closeSnowfallModal);
+document.getElementById("indices-x-button").addEventListener("click", closeIndicesModal);
+
+// Display best analogs on screen
+for (let idx = 0; idx < 5; idx++) {
+    let currentAnalog = bestAnalogs[idx];
+    let dateText = document.getElementById(`date-analog-${idx + 1}`);
+    let matchText = document.getElementById(`match-analog-${idx + 1}`);
+    let snowfallButton = document.getElementById(`snowfall-button-analog-${idx + 1}`);
+    let indicesButton = document.getElementById(`indices-button-analog-${idx + 1}`);
+
+    let matchPercentage = currentAnalog[2];
+
+    // Set text of analogs to the corresponding date and match
+    dateText.innerText = `${months[currentAnalog[1] - 1]} ${currentAnalog[0]}`;
+    matchText.innerText = `${(Math.round(matchPercentage * 10) / 10).toFixed(1)}% Match`
+
+    // Set color of text displaying match based on the match %
+    if (matchPercentage >= 95) {
+        matchText.classList.add("text-emerald-300");
+    }
+    else if (90 <= matchPercentage < 95) {
+        matchText.classList.add("text-yellow-300");
+    }
+    else if (85 <= matchPercentage < 90) {
+        matchText.classList.add("text-orange-300");
+    }
+    else if (matchPercentage < 85) {
+        matchText.classList.add("text-red-300");
+    }
+
+    // Dynamically define the behavior of when you click the buttons
+    snowfallButton.addEventListener("click", showSnowfallModal);
+    indicesButton.addEventListener("click", showIndicesModal);
 }

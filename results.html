@@ -61,8 +61,8 @@
             <!-- Modal for snowfall -->
             <div class="rounded-3xl shadow-lg hidden fixed top-[25vh] left-[12.5vw] lg:left-[25vw] h-[50vh] w-[75vw] lg:w-[50vw] flex flex-col bg-slate-300 animate-fadein" style="animation-play-state: paused" id="snowfall-modal">
                 <div class="rounded-t-3xl fixed top-[25vh] left-[12.5vw] lg:left-[25vw] h-[10vh] w-[75vw] lg:w-[50vw] flex flex-row justify-center items-center bg-slate-700">
-                    <h1 class="font-sans font-bold text-[3vmin] text-white">Snowfall at KIAD</h1>
-                    <button type="button" onclick="closeSnowfallModal()" class="fixed left-[80vw] lg:left-[70vw] w-7 lg:w-10 h-7 lg:h-10 inline-block bg-red-300 leading-tight uppercase rounded-full shadow-md hover:bg-red-200 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-400 active:shadow-lg">
+                    <h1 class="font-sans font-bold text-[3vmin] text-white" id="snowfall-header">Snowfall at KIAD</h1>
+                    <button type="button" id="snowfall-x-button" class="fixed left-[80vw] lg:left-[70vw] w-7 lg:w-10 h-7 lg:h-10 inline-block bg-red-300 leading-tight uppercase rounded-full shadow-md hover:bg-red-200 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-400 active:shadow-lg">
                         <h1 class="rotate-45 text-slate-700 text-[3vmin] font-bold">
                             +
                         </h1>
@@ -95,8 +95,8 @@
             <!-- Modal for indices -->
             <div class="rounded-3xl shadow-lg hidden fixed top-[25vh] left-[12.5vw] lg:left-[25vw] h-[50vh] w-[75vw] lg:w-[50vw] flex flex-col bg-slate-300 animate-fadein" style="animation-play-state: paused" id="indices-modal">
                 <div class="rounded-t-3xl fixed top-[25vh] left-[12.5vw] lg:left-[25vw] h-[10vh] w-[75vw] lg:w-[50vw] flex flex-row justify-center items-center bg-slate-700">
-                    <h1 class="font-sans font-bold text-[3vmin] text-white">Indices in December 2022</h1>
-                    <button type="button" onclick="closeIndicesModal()" class="fixed left-[80vw] lg:left-[70vw] w-7 lg:w-10 h-7 lg:h-10 inline-block bg-red-300 leading-tight uppercase rounded-full shadow-md hover:bg-red-200 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-400 active:shadow-lg">
+                    <h1 class="font-sans font-bold text-[3vmin] text-white" id="indices-header">Indices in December 2022</h1>
+                    <button type="button" id="indices-x-button" class="fixed left-[80vw] lg:left-[70vw] w-7 lg:w-10 h-7 lg:h-10 inline-block bg-red-300 leading-tight uppercase rounded-full shadow-md hover:bg-red-200 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-400 active:shadow-lg">
                         <h1 class="rotate-45 text-slate-700 text-[3vmin] font-bold">
                             +
                         </h1>
@@ -104,16 +104,16 @@
                 </div>
                 <div class=" fixed top-[35vh] left-[12.5vw] lg:left-[25vw] h-[40vh] w-[75vw] lg:w-[50vw] flex flex-col gap-[3vh] justify-center items-center">
                     <h1 class="text-[2.5vmin] text-slate-700 font-sans">
-                        The EPO Index was at an average of a sigma of <strong>2.5σ</strong>.
+                        The NAO Index was at an average of a sigma of <strong id="naooValue">-2.2σ</strong> (difference of <strong id="naoDifference">Δ0.2σ</strong>).
                     </h1>
                     <h1 class="text-[2.5vmin] text-slate-700 font-sans">
-                        The EPO Index was at an average of <strong>-2.2σ</strong>.
+                        The AO Index was at an average of <strong id="aoValue">-2.2σ</strong> (difference of <strong id="aoDifference">Δ0.2σ</strong>).
                     </h1>
                     <h1 class="text-[2.5vmin] text-slate-700 font-sans">
-                        The NAO Index was at an average of <strong>-2σ</strong>.
+                        The EPO Index was at an average of <strong id="epoValue">-2.2σ</strong> (difference of <strong id="epoDifference">Δ0.2σ</strong>).
                     </h1>
                     <h1 class="text-[2.5vmin] text-slate-700 font-sans">
-                        The AO Index was at an average of <strong>-1.9σ</strong>.
+                        The PNA Index was at an average of <strong id="pnaValue">-2.2σ</strong> (difference of <strong id="pnaDifference">Δ0.2σ</strong>).
                     </h1>
                 </div>
             </div>
@@ -138,12 +138,12 @@
                     </h1>
                 </div>
                 <div class="w-[30vw] lg:w-[20vw] gap-[2vmin] flex flex-row">
-                    <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4", onclick="showSnowfallModal()">
+                    <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4", id="snowfall-button-analog-1">
                         <h1 class="font-sans font-bold text-[2vmin] text-blue-100">
                             Snowfall
                         </h1>
                     </button>
-                    <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4" onclick="showIndicesModal()">
+                    <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4" id="indices-button-analog-1">
                         <h1 class="font-sans font-bold text-[2vmin] text-blue-100">
                             Indices
                         </h1>
@@ -161,12 +161,12 @@
                     </h1>
                 </div>
                 <div class="w-[30vw] lg:w-[20vw] gap-[2vmin] flex flex-row">
-                    <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4" onclick="showSnowfallModal()">
+                    <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4" id="snowfall-button-analog-2">
                         <h1 class="font-sans font-bold text-[2vmin] text-blue-100">
                             Snowfall
                         </h1>
                     </button>
-                    <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4" onclick="showIndicesModal()">
+                    <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4" id="indices-button-analog-2">
                         <h1 class="font-sans font-bold text-[2vmin] text-blue-100">
                             Indices
                         </h1>
@@ -184,12 +184,12 @@
                     </h1>
                 </div>
                 <div class="w-[30vw] lg:w-[20vw] gap-[2vmin] flex flex-row">
-                    <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4" onclick="showSnowfallModal()">
+                    <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4" id="snowfall-button-analog-3">
                         <h1 class="font-sans font-bold text-[2vmin] text-blue-100">
                             Snowfall
                         </h1>
                     </button>
-                    <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4" onclick="showIndicesModal()">
+                    <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4" id="indices-button-analog-3">
                         <h1 class="font-sans font-bold text-[2vmin] text-blue-100">
                             Indices
                         </h1>
@@ -207,12 +207,12 @@
                     </h1>
                 </div>
                 <div class="w-[30vw] lg:w-[20vw] gap-[2vmin] flex flex-row">
-                    <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4" onclick="showSnowfallModal()">
+                    <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4" id="snowfall-button-analog-4">
                         <h1 class="font-sans font-bold text-[2vmin] text-blue-100">
                             Snowfall
                         </h1>
                     </button>
-                    <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4" onclick="showIndicesModal()">
+                    <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4" id="indices-button-analog-4">
                         <h1 class="font-sans font-bold text-[2vmin] text-blue-100"> 
                             Indices
                         </h1>
@@ -230,12 +230,12 @@
                     </h1>
                 </div>
                 <div class="w-[30vw] lg:w-[20vw] gap-[2vmin] flex flex-row">
-                    <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4" onclick="showSnowfallModal()">
+                    <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4" id="snowfall-button-analog-5">
                         <h1 class="font-sans font-bold text-[2vmin] text-blue-100">
                             Snowfall
                         </h1>
                     </button>
-                    <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4" onclick="showIndicesModal()">
+                    <button class="rounded-lg bg-sky-900 hover:bg-sky-800 p-4" id="indices-button-analog-5">
                         <h1 class="font-sans font-bold text-[2vmin] text-blue-100">
                             Indices
                         </h1>
@@ -243,7 +243,6 @@
                 </div>
             </div>
         </div>
-        <script type="module" src="index.js">
-        </script>
+        <script type="module" src="index.js"></script> 
     </body>
 </html>
