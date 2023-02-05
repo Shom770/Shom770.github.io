@@ -1,15 +1,23 @@
 import naoJson from './teleconnections_data/nao_values.json' assert {type: 'json'};
+import aoJson from './teleconnections_data/ao_values.json' assert {type: 'json'};
+import epoJson from './teleconnections_data/epo_values.json' assert {type: 'json'};
+import pnaJson from './teleconnections_data/pna_values.json' assert {type: 'json'};
 
 const analogData = JSON.parse(localStorage.getItem("analogData"));
+
+if (analogData == null) {
+    alert("It looks like you didn't select a value for any of the indices. In order to find an analog, we need at least ONE index filled out.")
+}
 
 const naoIndex = null ? analogData["naoIndex"] === "" : parseFloat(analogData["naoIndex"]);
 const aoIndex = null ? analogData["aoIndex"] === "" : parseFloat(analogData["aoIndex"]);
 const epoIndex = null ? analogData["epoIndex"] === "" : parseFloat(analogData["epoIndex"]);
 const pnaIndex = null ? analogData["pnaIndex"] === "" : parseFloat(analogData["pnaIndex"]);
+const stationCode = null ? analogData["stationCode"] === "" : analogData["stationCode"];
 
 localStorage.removeItem("analogData");
 
-console.log(naoJson);
+console.log(Object.keys(naoJson).length, Object.keys(aoJson).length, Object.keys(epoJson).length, Object.keys(pnaJson).length);
 // Calculate all analogs
 
 function showSnowfallModal() {
