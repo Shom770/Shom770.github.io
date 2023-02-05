@@ -82,7 +82,7 @@ function showIndicesModal(analogNumber) {
     let currentAnalog = bestAnalogs[analogNumber - 1];
     let actualIndices = currentAnalog[3];
 
-    document.getElementById("indices-header").innerText = `Indices in ${months[currentAnalog[1]]} ${currentAnalog[0]}`;
+    document.getElementById("indices-header").innerText = `Indices in ${months[currentAnalog[1] - 1]} ${currentAnalog[0]}`;
 
     for (let idx = 0; idx < indicesNames.length; idx++) {
         let currentIndex = indicesNames[idx];
