@@ -62,8 +62,6 @@ for (let startingYear = 1950; startingYear < 1950 + Object.keys(naoJson).length;
             (enteredIndex) => enteredIndex ** 2
         ).reduce((a, b) => a + b, 0);
 
-        console.log(desiredIndices);
-
         let matchPercentage = sumOfBothArraysMultiplied / (sumOfDesiredIndicesSquared ** 0.5 * sumOfActualIndicesSquared ** 0.5) * 100;
 
         analogs.push([startingYear, month, matchPercentage, actualIndices]);
@@ -74,8 +72,6 @@ const analogsSorted = analogs.sort(
     (a1, a2) => a2[2] - a1[2]
 );
 const bestAnalogs = analogsSorted.slice(0, 5);
-
-console.log(bestAnalogs);
 
 // Display best analogs on screen
 for (let idx = 0; idx < 5; idx++) {
